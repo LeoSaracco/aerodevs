@@ -1,6 +1,7 @@
 package ar.com.cdt.aerodevs.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,5 +32,10 @@ public class VuelosServiceImpl implements VuelosService {
 		Vuelos vuelo = vuelosRepository.getById(dto.getIdVuelo());
 		vuelo.setEstadoVueloId(dto.getEstadoVuelo());
 		return vuelosRepository.save(vuelo);
+	}
+
+	@Override
+	public Optional<Vuelos> getVuelosByID(Integer idVuelo) {
+		return vuelosRepository.findById(idVuelo);
 	}
 }
