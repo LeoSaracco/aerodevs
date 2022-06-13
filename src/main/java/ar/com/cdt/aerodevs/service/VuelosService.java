@@ -2,6 +2,7 @@ package ar.com.cdt.aerodevs.service;
 
 import java.util.List;
 
+import ar.com.cdt.aerodevs.dto.DTOVueloStatus;
 import ar.com.cdt.aerodevs.models.Vuelos;
 
 public interface VuelosService {
@@ -18,4 +19,6 @@ public interface VuelosService {
 	
 	List<Vuelos> getAllVuelos();
 	Vuelos save (Vuelos vuelos);
+	Vuelos updateStatus (DTOVueloStatus dto);
+	
 }

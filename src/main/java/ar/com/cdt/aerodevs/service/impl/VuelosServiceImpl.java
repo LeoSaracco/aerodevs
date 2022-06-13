@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.cdt.aerodevs.dto.DTOVueloStatus;
 import ar.com.cdt.aerodevs.models.Vuelos;
 import ar.com.cdt.aerodevs.repository.IVuelosRepository;
 import ar.com.cdt.aerodevs.service.VuelosService;
@@ -25,4 +26,10 @@ public class VuelosServiceImpl implements VuelosService {
 		return vuelosRepository.save(vuelos);
 	}
 
+	@Override
+	public Vuelos updateStatus(DTOVueloStatus dto) {
+		Vuelos vuelo = vuelosRepository.getById(dto.getIdVuelo());
+		vuelo.setEstadoVueloId(dto.getEstadoVuelo());
+		return vuelosRepository.save(vuelo);
+	}
 }

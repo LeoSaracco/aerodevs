@@ -7,10 +7,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.cdt.aerodevs.dto.DTOVueloStatus;
 import ar.com.cdt.aerodevs.models.Vuelos;
 import ar.com.cdt.aerodevs.service.VuelosService;
 import io.swagger.annotations.ApiOperation;
@@ -35,5 +37,12 @@ public class VuelosController {
 	@PostMapping("/saveVuelo")
 	public ResponseEntity<Vuelos> saveNewVuelo(@RequestBody Vuelos vuelos) {
 		return new ResponseEntity<Vuelos>(vs.save(vuelos), HttpStatus.CREATED);
+	}
+	
+	@ApiOperation(value = "access User’s content", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	//@PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+	@PutMapping("/updateVuelo")
+	public ResponseEntity<Vuelos> updateStateVuelo(@RequestBody DTOVueloStatus dto) {
+		return new ResponseEntity<Vuelos>(vs.updateStatus(dto), HttpStatus.CREATED);
 	}
 }
