@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import ar.com.cdt.aerodevs.dto.DTOVuelo;
 import ar.com.cdt.aerodevs.dto.DTOVueloStatus;
 import ar.com.cdt.aerodevs.models.Vuelos;
 import ar.com.cdt.aerodevs.repository.IVuelosRepository;
@@ -23,8 +24,19 @@ public class VuelosServiceImpl implements VuelosService {
 	}
 
 	@Override
-	public Vuelos save(Vuelos vuelos) {
-		return vuelosRepository.save(vuelos);
+	public DTOVuelo save(DTOVuelo dto) {
+		Vuelos v = new Vuelos();
+		v.setAeropuertoOrigen(dto.getAeropuertoOrigen());
+		v.setAeropuertoDestino(dto.getAeropuertoDestino());
+		v.setCapacidad(dto.getCapacidad());
+		v.setCodigoMoneda(dto.getCodigoMoneda());
+		v.setEstadoVueloId(dto.getEstadoVueloId());
+		v.setFecha(dto.getFecha());
+		v.setPrecio(dto.getPrecio());
+		//Obtengo lo generado
+		v = vuelosRepository.save(v);
+		dto.setVueloId(v.getVueloId());
+		return dto;
 	}
 
 	@Override
@@ -37,5 +49,10 @@ public class VuelosServiceImpl implements VuelosService {
 	@Override
 	public Optional<Vuelos> getVuelosByID(Integer idVuelo) {
 		return vuelosRepository.findById(idVuelo);
+	}
+
+	@Override
+	public List<Vuelos> getVuelosByEstado(String estado) {
+		return vuelosRepository.findByEstado(estado);
 	}
 }

@@ -1,45 +1,24 @@
-package ar.com.cdt.aerodevs.models;
+package ar.com.cdt.aerodevs.dto;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+public class DTOVuelo {
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
-@Entity
-@Table(name = "vuelos")
-public class Vuelos {
-	@Id
-	@Column(name = "id_vuelo")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int vueloId;
-	@Column(name = "aeropuertoDestino", nullable = false)
-	private String aeropuertoDestino;
-	@Column(name = "aeropuertoOrigen", nullable = false)
-	private String aeropuertoOrigen;
-	@Column(name = "capacidad", nullable = false)
-	private int capacidad;
-	@Column(name = "codigoMoneda", nullable = false)
-	private String codigoMoneda;
-	@Column(name = "estadoVueloId", nullable = false)
-	private String estadoVueloId;
-	@Column(name = "fecha", nullable = false)
-	private Date fecha;
-	@Column(name = "precio", nullable = false)
-	private int precio;
 
-	@OneToMany(mappedBy = "vuelos", cascade = { CascadeType.ALL, CascadeType.REMOVE }, orphanRemoval = true)
-	@JsonManagedReference
-	private List<Reservas> reservas = new ArrayList<>();
+	private String aeropuertoDestino;
+
+	private String aeropuertoOrigen;
+
+	private int capacidad;
+
+	private String codigoMoneda;
+
+	private String estadoVueloId;
+
+	private Date fecha;
+
+	private int precio;
 
 	public int getVueloId() {
 		return vueloId;
@@ -105,18 +84,10 @@ public class Vuelos {
 		this.precio = precio;
 	}
 
-	public List<Reservas> getReservas() {
-		return reservas;
-	}
-
-	public void setReservas(List<Reservas> reservas) {
-		this.reservas = reservas;
-	}
-
 	@Override
 	public String toString() {
-		return "Vuelos [vueloId=" + vueloId + ", aeropuertoDestino=" + aeropuertoDestino + ", aeropuertoOrigen="
+		return "DTOVuelo [vueloId=" + vueloId + ", aeropuertoDestino=" + aeropuertoDestino + ", aeropuertoOrigen="
 				+ aeropuertoOrigen + ", capacidad=" + capacidad + ", codigoMoneda=" + codigoMoneda + ", estadoVueloId="
-				+ estadoVueloId + ", fecha=" + fecha + ", precio=" + precio + ", reservas=" + reservas + "]";
+				+ estadoVueloId + ", fecha=" + fecha + ", precio=" + precio + "]";
 	}
 }

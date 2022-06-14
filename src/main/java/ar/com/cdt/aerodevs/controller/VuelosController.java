@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import ar.com.cdt.aerodevs.dto.DTOVuelo;
 import ar.com.cdt.aerodevs.dto.DTOVueloStatus;
 import ar.com.cdt.aerodevs.models.Vuelos;
 import ar.com.cdt.aerodevs.service.VuelosService;
@@ -26,31 +27,38 @@ public class VuelosController {
 	@Autowired
 	VuelosService vs;
 
-	@ApiOperation(value = "access User’s content", notes = "Acceder a contenido si hasRole('USER') o hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Get vuelos", notes = "Acceder a contenido si hasRole('USER') o hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
 	@GetMapping("/vuelos/getAllVuelos")
 	public List<Vuelos> getAllVuelos() {
 		return vs.getAllVuelos();
 	}
 
-	@ApiOperation(value = "access User’s content", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Save new vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	@PostMapping("/saveVuelo")
-	public ResponseEntity<Vuelos> saveNewVuelo(@RequestBody Vuelos vuelos) {
-		return new ResponseEntity<Vuelos>(vs.save(vuelos), HttpStatus.CREATED);
+	public ResponseEntity<DTOVuelo> saveNewVuelo(@RequestBody DTOVuelo vuelos) {
+		return new ResponseEntity<DTOVuelo>(vs.save(vuelos), HttpStatus.CREATED);
 	}
 
-	@ApiOperation(value = "access User’s content", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Update estado del vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	@PutMapping("/updateVuelo")
+	@PutMapping("/updateEstadoVuelo")
 	public ResponseEntity<Vuelos> updateStateVuelo(@RequestBody DTOVueloStatus dto) {
 		return new ResponseEntity<Vuelos>(vs.updateStatus(dto), HttpStatus.CREATED);
 	}
 
-	@ApiOperation(value = "access User’s content", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Get vuelos según ID", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	@GetMapping("/vuelo/{idVuelo}")
 	public Optional<Vuelos> getVueloByID(@PathVariable("idVuelo") int idVuelo) {
 		return vs.getVuelosByID(idVuelo);
+	}
+	
+	@ApiOperation(value = "Get vuelos según estado", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
+	@GetMapping("/vuelos/{estado}")
+	public List<Vuelos> getVueloByID(@PathVariable("estado") String estado) {
+		return vs.getVuelosByEstado(estado);
 	}
 }
