@@ -22,14 +22,18 @@ public class Reservas {
 	@Column(name = "idReserva")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idReserva;
+
 	@Column(name = "NombreApellidoPersona", nullable = false)
 	private String NombreApellidoPersona;
+
 	@Column(name = "dniPersona", nullable = false)
 	private String dniPersona;
-	@Column(name = "estadoVueloId", nullable = false)
-	private String estadoVueloId;
+
 	@Column(name = "fechaReserva", nullable = false)
 	private Date fechaReserva;
+
+	@Column(name = "pagoParcial", nullable = false)
+	private Boolean pagoParcial;
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_vuelo")
@@ -60,20 +64,20 @@ public class Reservas {
 		this.dniPersona = dniPersona;
 	}
 
-	public String getEstadoVueloId() {
-		return estadoVueloId;
-	}
-
-	public void setEstadoVueloId(String estadoVueloId) {
-		this.estadoVueloId = estadoVueloId;
-	}
-
 	public Date getFechaReserva() {
 		return fechaReserva;
 	}
 
 	public void setFechaReserva(Date fechaReserva) {
 		this.fechaReserva = fechaReserva;
+	}
+
+	public Boolean getPagoParcial() {
+		return pagoParcial;
+	}
+
+	public void setPagoParcial(Boolean pagoParcial) {
+		this.pagoParcial = pagoParcial;
 	}
 
 	public Vuelos getVuelos() {
@@ -87,7 +91,7 @@ public class Reservas {
 	@Override
 	public String toString() {
 		return "Reservas [idReserva=" + idReserva + ", NombreApellidoPersona=" + NombreApellidoPersona + ", dniPersona="
-				+ dniPersona + ", estadoVueloId=" + estadoVueloId + ", fechaReserva=" + fechaReserva + ", vuelos="
-				+ vuelos + "]";
+				+ dniPersona + ", fechaReserva=" + fechaReserva + ", pagoParcial=" + pagoParcial + ", vuelos=" + vuelos
+				+ "]";
 	}
 }

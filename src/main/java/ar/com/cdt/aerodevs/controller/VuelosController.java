@@ -36,28 +36,28 @@ public class VuelosController {
 
 	@ApiOperation(value = "Save new vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	@PostMapping("/saveVuelo")
+	@PostMapping("/vuelos/saveVuelo")
 	public ResponseEntity<DTOVuelo> saveNewVuelo(@RequestBody DTOVuelo vuelos) {
 		return new ResponseEntity<DTOVuelo>(vs.save(vuelos), HttpStatus.CREATED);
 	}
 
 	@ApiOperation(value = "Update estado del vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	@PutMapping("/updateEstadoVuelo")
+	@PutMapping("/vuelos/updateEstadoVuelo")
 	public ResponseEntity<Vuelos> updateStateVuelo(@RequestBody DTOVueloStatus dto) {
 		return new ResponseEntity<Vuelos>(vs.updateStatus(dto), HttpStatus.CREATED);
 	}
 
 	@ApiOperation(value = "Get vuelos según ID", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	@GetMapping("/vuelo/{idVuelo}")
+	@GetMapping("/vuelos/{idVuelo}")
 	public Optional<Vuelos> getVueloByID(@PathVariable("idVuelo") int idVuelo) {
 		return vs.getVuelosByID(idVuelo);
 	}
 	
 	@ApiOperation(value = "Get vuelos según estado", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
-	@GetMapping("/vuelos/{estado}")
+	@GetMapping("/vuelos/estado/{estado}")
 	public List<Vuelos> getVueloByID(@PathVariable("estado") String estado) {
 		return vs.getVuelosByEstado(estado);
 	}

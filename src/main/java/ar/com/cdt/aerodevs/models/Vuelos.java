@@ -30,7 +30,7 @@ public class Vuelos {
 	private int capacidad;
 	@Column(name = "codigoMoneda", nullable = false)
 	private String codigoMoneda;
-	@Column(name = "estadoVueloId", nullable = false)
+	@Column(name = "estadoVueloId", nullable = false, columnDefinition = "varchar(255) default 'ABIERTO'")
 	private String estadoVueloId;
 	@Column(name = "fecha", nullable = false)
 	private Date fecha;
