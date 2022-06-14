@@ -12,6 +12,6 @@ import ar.com.cdt.aerodevs.models.Vuelos;
 @Repository
 public interface IVuelosRepository extends JpaRepository<Vuelos, Integer> {
 	
-	@Query(nativeQuery = true, value = "SELECT v.* FROM vuelos v WHERE v.estadoVueloId=:estado")
+	@Query(nativeQuery = true, value = "SELECT v.* FROM vuelos v WHERE v.estado_vuelo_id=:estado")
 	List<Vuelos> findByEstado(@Param("estado") String estado);
 }
