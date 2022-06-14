@@ -19,10 +19,10 @@ public class PasajeController {
 	@Autowired
 	PasajeService ps;
 
-	@ApiOperation(value = "Save new vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Save new pasaje", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	@PostMapping("/pasajes/{idReserva}/{pagoTotal}")
-	public ResponseEntity<Pasaje> saveNewVuelo(@PathVariable("idReserva") int idReserva,
+	public ResponseEntity<Pasaje> saveNewPasaje(@PathVariable("idReserva") int idReserva,
 			@PathVariable("pagoTotal") Boolean pagoTotal) {
 		return new ResponseEntity<Pasaje>(ps.save(idReserva, pagoTotal), HttpStatus.CREATED);
 	}

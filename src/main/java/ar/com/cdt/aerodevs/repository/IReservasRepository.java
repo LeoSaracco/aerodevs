@@ -9,7 +9,7 @@ import ar.com.cdt.aerodevs.models.Reservas;
 
 @Repository
 public interface IReservasRepository extends JpaRepository<Reservas, Integer> {
-	@Query(nativeQuery = true, value = "SELECT r.* FROM reservas r WHERE r.idReserva=:idReserva")
+	@Query(nativeQuery = true, value = "SELECT r.* FROM reservas r WHERE r.id_reserva=:idReserva")
 	Reservas findByID(@Param("idReserva") int idReserva);
 
 }

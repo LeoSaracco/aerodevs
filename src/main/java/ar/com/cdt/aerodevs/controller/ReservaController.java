@@ -31,7 +31,7 @@ public class ReservaController {
 		return rs.getAllReservaByID(idReserva);
 	}
 	
-	@ApiOperation(value = "Save new vuelo", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
+	@ApiOperation(value = "Save new reserva", notes = "Acceder a contenido si hasRole('MODERATOR') o hasRole('ADMIN').")
 	// @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
 	@PostMapping("/reservas/saveReserva")
 	public ResponseEntity<DTOReserva> saveNewReserva(@RequestBody DTOReserva dto) {
